@@ -1,0 +1,62 @@
+server:
+  port: 8245
+  servlet:
+    context-path: /api
+  session:
+    cookie:
+      max-age: 2592000
+spring:
+  application:
+    name: yu-picture-backend
+  session:
+    store-type: redis
+    # session 30 天过期
+    timeout: 2592000
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  redis:
+    database: 3
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yu_picture
+    username: root
+    password: ""
+
+# MyBatis Plus 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yuyue_learn.yupicturebackend.model.entity
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+# 接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: "接口文档"
+    version: 1.0
+    group:
+      default:
+        api-rule: package
+        api-rule-resources:
+          - com.yuyue_learn.yupicturebackend.controller
+
+# 对象存储配置（需要从腾讯云获取）
+cos:
+  client:
+    host: ${COS_HOST:}
+    secretId: ${COS_SECRET_ID:}
+    secretKey: ${COS_SECRET_KEY:}
+    region: ${COS_REGION:}
+    bucket: ${COS_BUCKET:}
+

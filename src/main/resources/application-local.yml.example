@@ -1,0 +1,8 @@
+﻿# application-local.yml.example — 请复制为 application-local.yml 并在本地填写值（不要提交真实密钥）
+cos:
+  client:
+    host: "https://your-bucket.cos.region.myqcloud.com"
+    secretId: "YOUR_SECRET_ID"
+    secretKey: "YOUR_SECRET_KEY"
+    region: "ap-region"
+    bucket: "your-bucket"
